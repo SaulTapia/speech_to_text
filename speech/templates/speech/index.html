@@ -1,0 +1,28 @@
+{% extends 'speech/base.html' %}
+
+{% load static %}
+
+{% block container %}
+<div class="container main-container">
+	<div class="row w-100 h-100">
+		<div class="d-flex h-100 offset-3 offset-sm-1 offset-md-2 col-6 col-sm-10 col-md-8 justify-content-center align-items-center">
+			<nav class="d-flex navbar navbar-dark bg-dark justify-content-center align-items-center">
+				<h3 class="navbar-text">Inserta un documento</h3>
+				<div class="container-fluid d-flex justify-content-center">
+					<form method="post" enctype="multipart/form-data" class="d-flex justify-content-center">
+						{% csrf_token %}
+						<input type="file" name="myfile">
+						<br>
+						<button type="submit" class="btn btn-outline-success">Subir archivo</button>
+					</form>
+				</div>
+			</nav>
+			
+			{% if uploaded_file_url %}
+				<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+			{% endif %}
+			
+		</div>
+	</div>
+</div>
+{% endblock %}
